@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MTDirectoryViewController.h
 //  MTFileManager
 //
 //  Created by Mark Tezza on 04/03/16.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MTDirectoryViewController : UITableViewController
 
+- (instancetype)initWithFolderPath:(NSString *)path;
 
 @end
-

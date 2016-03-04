@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "MTDirectoryViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -16,7 +18,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = window;
+    
+    MTDirectoryViewController *controller = [[MTDirectoryViewController alloc] initWithFolderPath:@"/Users/Kuzmenko"];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    window.rootViewController = navController;
+    [window makeKeyAndVisible];
+    
     return YES;
 }
 
