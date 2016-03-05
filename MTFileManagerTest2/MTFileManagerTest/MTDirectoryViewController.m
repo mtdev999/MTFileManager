@@ -106,7 +106,6 @@ static NSString * const kMTPath = @"/Users/Kuzmenko";
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         NSString *actionAlertString = [NSString stringWithFormat:@"section: %ld, row: %ld", indexPath.section, indexPath.row];
         [self actionAlertInfoWithString:actionAlertString];
-        
     }
 }
 
