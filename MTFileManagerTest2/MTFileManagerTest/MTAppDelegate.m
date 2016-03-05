@@ -1,22 +1,22 @@
 //
 //  AppDelegate.m
-//  MTFileManagerWithStoryBoard
+//  MTFileManagerTest
 //
-//  Created by Mark Tezza on 05/03/16.
+//  Created by Mark Tezza on 27.02.16.
 //  Copyright © 2016 Mark Tezza. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "MTAppDelegate.h"
 
-@interface AppDelegate ()
+@interface MTAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation MTAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
     return YES;
 }
 

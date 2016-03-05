@@ -1,14 +1,14 @@
 //
 //  AppDelegate.h
-//  MTFileManagerWithStoryBoard
+//  MTFileManagerTest
 //
-//  Created by Mark Tezza on 05/03/16.
+//  Created by Mark Tezza on 27.02.16.
 //  Copyright © 2016 Mark Tezza. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface MTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
