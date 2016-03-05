@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MTDirecoryViewController.h
 //  MTFileManagerWithStoryBoard
 //
 //  Created by Mark Tezza on 05/03/16.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MTDirecoryViewController : UITableViewController
+@property (nonatomic, strong)   NSString *path;
+
 
 
 @end
-
