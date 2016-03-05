@@ -103,7 +103,6 @@
         NSString *filePath = [self.path stringByAppendingPathComponent:fileName];
         
         MTDirectoryViewController *vc = [[MTDirectoryViewController alloc] initWithFolderPath:filePath];
-        
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
