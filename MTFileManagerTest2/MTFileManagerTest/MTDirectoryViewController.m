@@ -9,9 +9,11 @@
 #import "MTDirectoryViewController.h"
 
 #import "MTFileViewCell.h"
+
 #import "UITableView+MTExtensions.h"
 #import "UIView+MTExtensions.h"
 
+static NSString * const kMTPath = @"/Users/Kuzmenko";
 
 @interface MTDirectoryViewController ()
 
@@ -34,6 +36,9 @@
     return self;
 }
 
+#pragma mark -
+#pragma mark Accessors
+
 - (void)setPath:(NSString *)path {
     _path = path;
     
@@ -48,17 +53,17 @@
     self.navigationItem.title = [self.path lastPathComponent];
 }
 
-- (void)dealloc {
-    NSLog(@":::controller with path: %@ has been dealocated", self.path);
-}
+#pragma mark -
+#pragma mark Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     if (!self.path) {
-        self.path  = @"/Users/Kuzmenko";
+        self.path  = kMTPath;
     }
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -67,17 +72,8 @@
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(actionBackToRoot:)];
-        
         self.navigationItem.rightBarButtonItem = item;
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    NSLog(@"%@", self.path);
-    NSLog(@"view controllers: %lu", [self.navigationController.viewControllers count]);
-    NSLog(@"index on stack: %lu", [self.navigationController.viewControllers indexOfObject:self]);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,7 +109,7 @@
         
     }
 }
-// вывод алерт вью
+
 - (void)actionAlertInfoWithString:(NSString *)string {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Info!"
                                                                    message:string
@@ -131,7 +127,9 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-// получаем форматированную строку для размера файла
+#pragma mark -
+#pragma mark Private
+
 - (NSString *)fileSizeFromValue:(unsigned long long)size {
     static NSString *units[] = {@"B", @"KB", @"MB", @"GB", @"TB"};
     static int unitsCount = 5;
@@ -146,7 +144,6 @@
     return [NSString stringWithFormat:@"%.2f %@", fileSize, units[index]];
 }
 
-// форматирование строки для вывода данных о файле
 - (NSString *)dateStringWithAttributes:(NSDictionary *)attributes {
     NSDateFormatter *dateFormatter = nil;
     
@@ -166,27 +163,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *folderIdentifier = @"FoderCell";
     static NSString *fileIdentifier = @"FileCell";
     
     NSString *fileName = [self.contents objectAtIndex:indexPath.row];
-    
-    /*
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:folderIdentifier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:folderIdentifier];
-    }
-    
-    cell.textLabel.text = fileName;
-    
-    if ([self isDirectoryAtIndexPath:indexPath]) {
-        cell.imageView.image = [UIImage imageNamed:@"folder"];
-    } else {
-        cell.imageView.image = [UIImage imageNamed:@"file"];
-    }
-     */
  
     if ([self isDirectoryAtIndexPath:indexPath]) {
         UITableViewCell *cell = [tableView dequeueCellWithStyle:UITableViewCellStyleDefault
@@ -232,40 +212,12 @@
     if ([self isDirectoryAtIndexPath:indexPath]) {
         NSString *fileName = [self.contents objectAtIndex:indexPath.row];
         NSString *path = [self.path stringByAppendingPathComponent:fileName];
-        
-        // расматриваем разные варианты создания котроллера на стеке и передачи ему параметров:
-        /*
-        MTDirectoryViewController *vc = [[MTDirectoryViewController alloc] initWithFolder:path];
-        [self.navigationController pushViewController:vc animated:YES];
-        */
-        
-        /*
-         // этот способ более приемлем в данном случае:
-        UIStoryboard *storyboard = self.storyboard;
-        MTDirectoryViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"MTDirectoryViewController"];
+
+        MTDirectoryViewController *vc =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"MTDirectoryViewController"];
         vc.path = path;
         [self.navigationController pushViewController:vc animated:YES];
-         */
-        
-        self.selectedPath = path;
-        [self performSegueWithIdentifier:@"navigationDeep" sender:nil];
     }
-}
-
-#pragma mark -
-#pragma mark Segue
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    NSLog(@"shouldPerformSegueWithIdentifier: %@", identifier);
-    
-    return YES;
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue: %@", segue.identifier);
-    
-    MTDirectoryViewController *vc = segue.destinationViewController;
-    vc.path = self.selectedPath;
 }
 
 @end

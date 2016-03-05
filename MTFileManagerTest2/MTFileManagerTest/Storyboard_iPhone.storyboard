@@ -9,6 +9,7 @@
         <scene sceneID="z1m-Y6-4Z2">
             <objects>
                 <navigationController id="WWu-JE-mJd" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SQk-H4-l67">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -109,7 +110,7 @@
                     </connections>
                 </barButtonItem>
             </objects>
-            <point key="canvasLocation" x="-658.5" y="114.5"/>
+            <point key="canvasLocation" x="-670.5" y="114.5"/>
         </scene>
     </scenes>
     <resources>
