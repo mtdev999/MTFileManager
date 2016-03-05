@@ -11,6 +11,4 @@
 @interface MTDirecoryViewController : UITableViewController
 @property (nonatomic, strong)   NSString *path;
 
-
-
 @end
