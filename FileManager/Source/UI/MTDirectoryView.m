@@ -37,19 +37,15 @@
     UIButton *homeButton = self.homeButton;
     
     self.directViewController = controller;
-    
     controller.navigationController.viewControllers.count > 1 ? (homeButton.hidden = NO)
                                                               : (homeButton.hidden = YES);
 }
 
 - (void)createNewFolderWithName:(NSString *)name viewController:(MTDirectoryViewController *)controller {
-    
-    
     [self performAlertActionSheet];
 }
 
 - (void)addNewFolder {
-    
     MTDirectoryViewController *controller = self.directViewController;
     NSUInteger newIndex = 0;
     NSString *path = [controller.path stringByAppendingPathComponent:self.textField];
@@ -74,8 +70,6 @@
     [tableView beginUpdates];
     [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationRight];
     [tableView endUpdates];
-    
-    [tableView reloadData];
 }
 
 - (void)performAlertActionSheet {
@@ -86,14 +80,13 @@
     UIAlertAction *actionCreate = [UIAlertAction actionWithTitle:@"Create New Folder"
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                            NSLog(@"create new folder");
                                                             [self performAlertTextField];
                                                         }];
     
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Crancel"
                                                           style:UIAlertActionStyleCancel
                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                            NSLog(@"cancel");
+                                                            
                                                         }];
     
     [alertController addAction:actionCreate];
@@ -109,20 +102,15 @@
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                             NSLog(@"Ok!");
-                                                             
-                                                             
                                                              [self addNewFolder];
-                                                             
                                                          }];
     
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Crancel"
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                             NSLog(@"cancel");
+                                                             
                                                          }];
-    
-    
+
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"enter folder's name";
         [textField addTarget:self action:@selector(alertTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];

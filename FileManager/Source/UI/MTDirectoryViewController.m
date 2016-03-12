@@ -59,8 +59,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     if (!self.path) {
         self.path = @"/Users/Kuzmenko/Desktop/FileManager";
     }
@@ -186,8 +184,6 @@
     [tableView beginUpdates];
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
     [tableView endUpdates];
-    
-    [tableView reloadData];
 }
 
 #pragma mark -
